@@ -1,0 +1,57 @@
+.multiselect {
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  user-select: none;
+
+  .box {
+    display: flex;
+    width: 250px;
+    border: 2px solid black;
+    overflow-y: auto;
+    height: 100%;
+
+    &:first-child {
+      margin-right: 30px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 5px;
+      margin: 0;
+
+      li {
+        line-height: 25px;
+        cursor: pointer;
+
+        &.selected {
+          background: dodgerblue;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .arrows-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 30px auto 0;
+
+    .arrow {
+      width: 44px;
+      height: 44px;
+      background-color: dodgerblue;
+      box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.5);
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      line-height: 44px;
+      cursor: pointer;
+
+      &:first-child {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

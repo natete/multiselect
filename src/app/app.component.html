@@ -1,3 +1,16 @@
-<h1>
-  {{title}}
-</h1>
+<app-multiselect [unselectedItems]="unselectedItems"
+                 [selectedItems]="selectedItems"
+                 (onChangeSelection)="onChangeSelection($event)">
+</app-multiselect>
+
+<div>
+  <div>
+    <strong>Selected</strong>
+    <ul>
+      <li *ngFor="let item of selectedItems">
+        {{item.value}}
+      </li>
+    </ul>
+  </div>
+
+</div>

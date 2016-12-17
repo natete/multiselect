@@ -1,0 +1,29 @@
+<div class="multiselect">
+  <div class="unselected box">
+    <ul>
+      <li *ngFor="let item of unselectedItems, let i = index"
+          (click)="toggleHighlightUnselectedItem(item, $event)"
+          class="item"
+          [class.selected]="item.highlighted"
+          dnd-draggable>
+        {{item.value}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="arrows-wrapper">
+    <div class="arrow" (click)="addHighlightedItems()">></div>
+    <div class="arrow" (click)="removeHighlightedItems()"><</div>
+  </div>
+
+  <div class="selected box" dnd-droppable (onDropSuccess)="dropOnSelectedSuccess($event)">
+    <ul>
+      <li *ngFor="let item of selectedItems, let i = index"
+          (click)="toggleHighlightSelectedItem(item, $event)"
+          [class.selected]="item.highlighted"
+          class="item">
+        {{item.value}}
+      </li>
+    </ul>
+  </div>
+</div>
