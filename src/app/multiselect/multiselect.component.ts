@@ -12,6 +12,7 @@ export class MultiselectComponent {
 
   @Input() unselectedItems: Array<MultiselectItem> = [];
   @Input() selectedItems: Array<MultiselectItem> = [];
+  @Input() isSortable: boolean = false;
   @Output() onChangeSelection = new EventEmitter<Array<MultiselectItem>>();
 
   constructor() {
@@ -53,6 +54,44 @@ export class MultiselectComponent {
     this.moveItems('selectedItems', 'unselectedItems');
 
     this.onChangeSelection.emit(this.selectedItems);
+  }
+
+  /**
+   * Move the highlighted items up changing the order of the selected items if the first one is not highlighted.
+   */
+  moveUp(): void {
+    let highlightedItems = this.selectedItems.filter((item) => item.highlighted);
+    let isFirstItemHighlighted = this.selectedItems.indexOf(highlightedItems[0]) === 0;
+
+    if (highlightedItems.length > 0 && !isFirstItemHighlighted) {
+
+      highlightedItems.forEach((item) => {
+        let index = this.selectedItems.indexOf(item);
+
+        this.selectedItems[index] = this.selectedItems[index - 1];
+
+        this.selectedItems[index - 1] = item;
+      });
+    }
+  }
+
+  /**
+   * Move the highlighted items down changing the order of the selected items if the last one is not highlighted.
+   */
+  moveDown(): void {
+    let highlightedItems = this.selectedItems.filter((item) => item.highlighted);
+    let isLastItemHighlighted = this.selectedItems.indexOf(highlightedItems[highlightedItems.length - 1]) === this.selectedItems.length - 1;
+
+    if (highlightedItems.length > 0 && !isLastItemHighlighted) {
+
+      highlightedItems.forEach((item) => {
+        let index = this.selectedItems.indexOf(item);
+
+        this.selectedItems[index] = this.selectedItems[index + 1];
+
+        this.selectedItems[index + 1] = item;
+      });
+    }
   }
 
   dropOnSelectedSuccess(event: MultiselectItem): void {
