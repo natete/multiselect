@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {MultiselectItem} from './multiselect/multiselect-item.interface';
+import { Component } from '@angular/core';
+import { MultiselectItem } from './multiselect/multiselect-item.interface';
 
 @Component({
   selector: 'app-root',

@@ -1,6 +1,6 @@
-import {Component, Input, ChangeDetectionStrategy, EventEmitter} from '@angular/core';
-import {MultiselectItem} from './multiselect-item.interface';
-import {Output} from '@angular/core/src/metadata/directives';
+import { Component, Input, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
+import { MultiselectItem } from './multiselect-item.interface';
+import { Output } from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'app-multiselect',
@@ -60,8 +60,8 @@ export class MultiselectComponent {
    * Move the highlighted items up changing the order of the selected items if the first one is not highlighted.
    */
   moveUp(): void {
-    let highlightedItems = this.selectedItems.filter((item) => item.highlighted);
-    let isFirstItemHighlighted = this.selectedItems.indexOf(highlightedItems[0]) === 0;
+    const highlightedItems = this.selectedItems.filter((item) => item.highlighted);
+    const isFirstItemHighlighted = this.selectedItems.indexOf(highlightedItems[0]) === 0;
 
     if (highlightedItems.length > 0 && !isFirstItemHighlighted) {
 
@@ -79,13 +79,13 @@ export class MultiselectComponent {
    * Move the highlighted items down changing the order of the selected items if the last one is not highlighted.
    */
   moveDown(): void {
-    let highlightedItems = this.selectedItems.filter((item) => item.highlighted);
-    let isLastItemHighlighted = this.selectedItems.indexOf(highlightedItems[highlightedItems.length - 1]) === this.selectedItems.length - 1;
+    const highlightedItems = this.selectedItems.filter((item) => item.highlighted).reverse();
+    const isLastItemHighlighted = this.selectedItems.indexOf(highlightedItems[0]) === this.selectedItems.length - 1;
 
     if (highlightedItems.length > 0 && !isLastItemHighlighted) {
 
       highlightedItems.forEach((item) => {
-        let index = this.selectedItems.indexOf(item);
+        const index = this.selectedItems.indexOf(item);
 
         this.selectedItems[index] = this.selectedItems[index + 1];
 
@@ -107,13 +107,13 @@ export class MultiselectComponent {
    */
   private toggleHighlightItem(item: MultiselectItem, isShiftHold: boolean, items: Array<MultiselectItem>): void {
     if (isShiftHold && !item.highlighted) {
-      let filteredItems = items.filter((it) => it.highlighted || it === item);
+      const filteredItems = items.filter((it) => it.highlighted || it === item);
 
-      let initSelectionIndex = filteredItems.indexOf(item) - 1;
-      let initSelectionItem = initSelectionIndex >= 0 ? filteredItems[initSelectionIndex] : items[0];
+      const initSelectionIndex = filteredItems.indexOf(item) - 1;
+      const initSelectionItem = initSelectionIndex >= 0 ? filteredItems[initSelectionIndex] : items[0];
 
-      let indexOfInitSelection = items.indexOf(initSelectionItem);
-      let indexOfClicked = items.indexOf(item);
+      const indexOfInitSelection = items.indexOf(initSelectionItem);
+      const indexOfClicked = items.indexOf(item);
 
       items.forEach((it, index) => {
         if (index >= indexOfInitSelection && index <= indexOfClicked) {
